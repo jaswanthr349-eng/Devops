@@ -2,5 +2,5 @@
 
 for i in {1..0}
 do 
-          echo "Hellow jenkins!"
+          echo "Hellow jenkins $i!"
 done
