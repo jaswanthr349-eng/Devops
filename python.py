@@ -1,3 +1,6 @@
 #!bin/bash
 
-print echo "Hellow world"
+for i in {1..0}
+do 
+          echo "Hellow jenkins!"
+done
