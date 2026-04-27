@@ -1,3 +1,3 @@
 #!bin/bash
 
-pring echo "Hellow world"
+print echo "Hellow world"
