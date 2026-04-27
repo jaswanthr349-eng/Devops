@@ -21,7 +21,7 @@ pipeline{
         stage('verification'){
             steps{
                 sh '''
-                bash $(WORKSPACE)/python.py
+                bash ${WORKSPACE}/python.py
                 echo "development successfull"
                 '''
             }
