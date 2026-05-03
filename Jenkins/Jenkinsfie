@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 git branch: 'Devengineer',
                 url: 'https://github.com/jaswanthr349-eng/Devops.git'
@@ -15,15 +15,6 @@ pipeline {
                 sh '''
                 echo "Deploying files..."
                 cp -r * /var/www/html/
-                '''
-            }
-        }
-
-        stage('Restart Nginx') {
-            steps {
-                sh '''
-                   systemctl enable nginx
-                   systemctl start nginx
                 '''
             }
         }
