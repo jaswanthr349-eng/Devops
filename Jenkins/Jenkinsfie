@@ -22,7 +22,8 @@ pipeline {
         stage('Restart Nginx') {
             steps {
                 sh '''
-                   systemctl restart nginx
+                   systemctl enable nginx
+                   systemctl start nginx
                 '''
             }
         }
