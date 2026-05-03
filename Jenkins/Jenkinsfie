@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/jaswanthr349-eng/Devops.git'
+            }
+        }
+
+        stage('Prepare Build') {
+            steps {
+                echo 'Static HTML project - no build needed'
+            }
+        }
+
+        stage('Deploy to Web Server') {
+            steps {
+                sh '''
+                echo "Deploying to web server directory"
+                sudo cp -r * /var/www/html/
+                '''
+            }
+        }
+
+        stage('Restart Web Server') {
+            steps {
+                sh '''
+                sudo systemctl restart nginx
+                '''
+            }
+        }
+    }
+}
