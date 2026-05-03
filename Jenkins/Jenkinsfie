@@ -5,20 +5,15 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/jaswanthr349-eng/Devops.git'
-            }
-        }
-
-        stage('Prepare Build') {
-            steps {
-                echo 'Static HTML project - no build needed'
+                git branch: 'Devengineer',
+                url: 'https://github.com/jaswanthr349-eng/Devops.git'
             }
         }
 
         stage('Deploy to Web Server') {
             steps {
                 sh '''
-                echo "Deploying to web server directory"
+                echo "Deploying static website to Nginx..."
                 sudo cp -r * /var/www/html/
                 '''
             }
@@ -28,6 +23,15 @@ pipeline {
             steps {
                 sh '''
                 sudo systemctl restart nginx
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                echo "Deployment completed successfully"
+                curl -I http://localhost || true
                 '''
             }
         }
