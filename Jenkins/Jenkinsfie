@@ -3,34 +3,25 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 git branch: 'Devengineer',
                 url: 'https://github.com/jaswanthr349-eng/Devops.git'
             }
         }
 
-        stage('Deploy to Web Server') {
+        stage('Deploy') {
             steps {
                 sh '''
-                echo "Deploying static website to Nginx..."
-                 cp -r * /var/www/html/
+                echo "Deploying files..."
+                cp -r * /var/www/html/
                 '''
             }
         }
 
-        stage('Restart Web Server') {
+        stage('Verify') {
             steps {
                 sh '''
-                 systemctl restart nginx
-                '''
-            }
-        }
-
-        stage('Verify Deployment') {
-            steps {
-                sh '''
-                echo "Deployment completed successfully"
                 curl -I http://localhost || true
                 '''
             }
